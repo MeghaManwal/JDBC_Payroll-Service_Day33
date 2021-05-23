@@ -44,11 +44,11 @@ public class EmployeeRepo {
 		
 	}
 
-	public List<Information> findAll() throws SQLException {
+	public List<Information> findAll(String Name) throws SQLException {
 		List<Information> infos=new ArrayList<>();
 		
 		Connection connection = null;
-		Statement statement = null;
+		PreparedStatement prepstatement = null;
 		try {
 		//Step1: Load & Register Driver Class
 		DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver ());
@@ -57,11 +57,12 @@ public class EmployeeRepo {
 		 connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/payroll__service", "root", "Varsha@!4455");
 		
 		//Step3: Create Statement
-		 statement = connection.createStatement();
-		
+		 String query =" select * from payroll where Name=?";
+		 prepstatement = connection.prepareStatement(query);
+		 prepstatement.setString(1, Name);
+		 
 		//Step4: Execute Query
-		String query =" select * from payroll";
-		ResultSet resultset = statement.executeQuery(query);
+		ResultSet resultset = prepstatement.executeQuery();
 	
 		while(resultset.next()) {
 			Information information = new Information();
@@ -90,10 +91,10 @@ public class EmployeeRepo {
 		}finally {
 			
 			if(connection != null) {
-			statement.close();
+				connection.close();
 			}
-			if(statement != null) {
-			connection.close();
+			if(prepstatement != null) {
+			   prepstatement.close();
 			}
 		}
 		return infos;

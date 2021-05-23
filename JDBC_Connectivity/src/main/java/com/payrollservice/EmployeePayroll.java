@@ -41,7 +41,9 @@ public class EmployeePayroll {
 
 		private static void ReteriveData() throws SQLException {
 			EmployeeRepo repo = new EmployeeRepo();
-			List<Information> infos = repo.findAll();
+			System.out.println("Enter Name");
+			String Name = s.next();
+			List<Information> infos = repo.findAll(Name);
 			infos.forEach(System.out::println);
 		}
 
