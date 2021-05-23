@@ -98,6 +98,39 @@ public class EmployeeRepo {
 		return infos;
 	}
 
+	public void updatedata(int id, double basicPay) throws SQLException {
+		Connection connection = null;
+		Statement statement = null;
+		try {
+		//Step1: Load & Register Driver Class
+		DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver ());
+		
+		//Step2: Establish a MySql Connection
+		 connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/payroll__service", "root", "Varsha@!4455");
+		
+		//Step3: Create Statement
+		 statement = connection.createStatement();
+		
+		//Step4: Execute Query
+		String query ="Update payroll set basicPay="+basicPay+"where Id="+id+"";
+		statement.executeUpdate(query);
+		System.out.print("Records Updated!");
+		
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(connection != null) {
+			statement.close();
+			}
+			if(statement != null) {
+			connection.close();
+			}
+		}
+		
+	}
+
 	
 
 }

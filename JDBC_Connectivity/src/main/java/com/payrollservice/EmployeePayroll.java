@@ -10,7 +10,7 @@ public class EmployeePayroll {
 	
 		public static void main(String[] args) throws ClassNotFoundException, SQLException {
 			
-			System.out.println("Press 1 to Add Data\n Press 2 to Reterive data");
+			System.out.println(" Press 1 to Add Data\n Press 2 to Reterive data\n Press 3 to Update data\n");
 			int choice = s.nextInt();
 			
 			switch(choice) {
@@ -19,9 +19,25 @@ public class EmployeePayroll {
 				  break;
 			case 2:
 				  ReteriveData();
-				  break;	
+				  break;
+			case 3:
+				  UpdateData();
+				  break;
 			}
 					
+		}
+
+		private static void UpdateData() throws SQLException {
+		
+			System.out.println("Enter Id");
+		    int id = s.nextInt();
+			
+			System.out.println("Enter BasicPay");
+			double basicPay = s.nextDouble();
+			
+			EmployeeRepo repo = new EmployeeRepo();
+			repo.updatedata(id, basicPay);
+				
 		}
 
 		private static void ReteriveData() throws SQLException {
@@ -31,8 +47,9 @@ public class EmployeePayroll {
 		}
 
 		private static void AddData() throws ClassNotFoundException, SQLException {
-			System.out.println("Enter Name");
 			Information info = new Information();
+			
+			System.out.println("Enter Name");
 			info.setName(s.next());
 			
 			System.out.println("Enter Department");
