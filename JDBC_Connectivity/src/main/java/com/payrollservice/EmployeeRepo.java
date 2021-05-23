@@ -2,6 +2,7 @@ package com.payrollservice;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -77,7 +78,7 @@ public class EmployeeRepo {
 			String gender = resultset.getString(6);
 			information.setGender(gender);
 			
-			Double pay = resultset.getDouble(7);
+			int pay = resultset.getInt(7);
 			information.setBasicPay(pay);
 			
 			infos.add(information);
@@ -98,9 +99,9 @@ public class EmployeeRepo {
 		return infos;
 	}
 
-	public void updatedata(int id, double basicPay) throws SQLException {
+	public void updatedata(int id, int basicPay) throws SQLException {
 		Connection connection = null;
-		Statement statement = null;
+		PreparedStatement prepstate = null;
 		try {
 		//Step1: Load & Register Driver Class
 		DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver ());
@@ -109,23 +110,25 @@ public class EmployeeRepo {
 		 connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/payroll__service", "root", "Varsha@!4455");
 		
 		//Step3: Create Statement
-		 statement = connection.createStatement();
+		 String query ="Update payroll set basicPay=? where Id=?";
+		 prepstate = connection.prepareStatement(query);
+		 prepstate.setFloat(1, basicPay);
+		 prepstate.setInt(2, id);
 		
 		//Step4: Execute Query
-		String query ="Update payroll set basicPay="+basicPay+"where Id="+id+"";
-		statement.executeUpdate(query);
-		System.out.print("Records Updated!");
+		 prepstate.executeUpdate();
+		 System.out.print("Records Updated!");
 		
-		}catch (SQLException e) {
+		 }catch (SQLException e) {
 			e.printStackTrace();
-		}catch (Exception e) {
+		 }catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		 }finally {
 			if(connection != null) {
-			statement.close();
+			   connection.close();
 			}
-			if(statement != null) {
-			connection.close();
+			if(prepstate != null) {
+			   prepstate.close();
 			}
 		}
 		

@@ -6,7 +6,7 @@ public class Information {
 	public String Name;
 	public String department;
 	public String gender;
-	public double basicPay;
+	public int basicPay;
 	
 	public String getName() {
 		return Name;
@@ -29,7 +29,7 @@ public class Information {
 	public double getBasicPay() {
 		return basicPay;
 	}
-	public void setBasicPay(double basicPay) {
+	public void setBasicPay(int basicPay) {
 		this.basicPay = basicPay;
 	}
 	

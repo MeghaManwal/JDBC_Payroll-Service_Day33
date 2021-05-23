@@ -23,8 +23,7 @@ public class EmployeePayroll {
 			case 3:
 				  UpdateData();
 				  break;
-			}
-					
+			}		
 		}
 
 		private static void UpdateData() throws SQLException {
@@ -33,7 +32,7 @@ public class EmployeePayroll {
 		    int id = s.nextInt();
 			
 			System.out.println("Enter BasicPay");
-			double basicPay = s.nextDouble();
+		    int basicPay = s.nextInt();
 			
 			EmployeeRepo repo = new EmployeeRepo();
 			repo.updatedata(id, basicPay);
@@ -59,7 +58,7 @@ public class EmployeePayroll {
 			info.setGender(s.next());
 			
 			System.out.println("Enter BasicPay");
-			info.setBasicPay(s.nextDouble());
+			info.setBasicPay(s.nextInt());
 			
 			EmployeeRepo repo = new EmployeeRepo();
 			repo.insertRecord(info);
