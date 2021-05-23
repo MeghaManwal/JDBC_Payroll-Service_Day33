@@ -1,35 +1,48 @@
 package com.payrollservice;
 
 public class Information {
-
-	public String firstName;
-	public String lastName;
-	public String Experience;
-	public String EmailId;
+    
+	public int Id;
+	public String Name;
+	public String department;
+	public String gender;
+	public double basicPay;
 	
-	public String getFirstName() {
-		return firstName;
+	public String getName() {
+		return Name;
 	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setName(String name) {
+		Name = name;
 	}
-	public String getLastName() {
-		return lastName;
+	public String getDepartment() {
+		return department;
 	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setDepartment(String department) {
+		this.department = department;
 	}
-	public String getExperience() {
-		return Experience;
+	public String getGender() {
+		return gender;
 	}
-	public void setExperience(String experience) {
-		Experience = experience;
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
-	public String getEmailId() {
-		return EmailId;
+	public double getBasicPay() {
+		return basicPay;
 	}
-	public void setEmailId(String emailId) {
-		EmailId = emailId;
+	public void setBasicPay(double basicPay) {
+		this.basicPay = basicPay;
 	}
+	
+	public int getId() {
+		return Id;
+	}
+	public void setId(int id) {
+		Id = id;
+	}
+	@Override
+	public String toString() {
+		return "Information [Id=" + Id + ", Name=" + Name + ", department=" + department + ", gender=" + gender
+				+ ", basicPay=" + basicPay + "]";
+	}	
 
 }
