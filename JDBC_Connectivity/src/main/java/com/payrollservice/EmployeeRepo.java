@@ -135,6 +135,57 @@ public class EmployeeRepo {
 		
 	}
 
+	public List<Information> findAllForParticularDate() throws SQLException {
+	
+		List<Information> infos=new ArrayList<>();
+		Connection connection = null;
+		PreparedStatement prepstatement = null;
+		try {
+			DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver ());
+			
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/payroll__service", "root", "Varsha@!4455");
+			
+			String query ="Select * from payroll where Start between Cast('2020-03-10' as date) and date(now()); ";
+			prepstatement = connection.prepareStatement(query);
+			
+			ResultSet resultset = prepstatement.executeQuery();
+			
+			while(resultset.next()) {
+				Information information = new Information();
+				
+				int id=resultset.getInt(1);
+				information.setId(id);
+				
+				String name = resultset.getString(2);
+				information.setName(name);
+				
+				String dept = resultset.getString(5);
+				information.setDepartment(dept);
+				
+				String gender = resultset.getString(6);
+				information.setGender(gender);
+				
+				int pay = resultset.getInt(7);
+				information.setBasicPay(pay);
+				
+				infos.add(information);
+			}
+			}catch (SQLException e) {
+				e.printStackTrace();
+			}catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				if(connection != null) {
+					connection.close();
+				}
+				if(prepstatement != null) {
+				   prepstatement.close();
+				}
+			}
+			return infos;
+		
+	}
+
 	
 
 }

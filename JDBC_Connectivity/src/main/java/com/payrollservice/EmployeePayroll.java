@@ -10,7 +10,7 @@ public class EmployeePayroll {
 	
 		public static void main(String[] args) throws ClassNotFoundException, SQLException {
 			
-			System.out.println(" Press 1 to Add Data\n Press 2 to Reterive data\n Press 3 to Update data\n");
+			System.out.println(" Press 1 to Add Data\n Press 2 to Reterive data\n Press 3 to Update data\n Press 4 to Reterive Data for Particular Date\n");
 			int choice = s.nextInt();
 			
 			switch(choice) {
@@ -23,7 +23,16 @@ public class EmployeePayroll {
 			case 3:
 				  UpdateData();
 				  break;
+			case 4:
+				  ReteriveDataForParticularDate();
+				  break;
 			}		
+		}
+
+		private static void ReteriveDataForParticularDate() throws SQLException {
+			EmployeeRepo repo = new EmployeeRepo();
+			List<Information> infos = repo.findAllForParticularDate();
+			infos.forEach(System.out::println);
 		}
 
 		private static void UpdateData() throws SQLException {
