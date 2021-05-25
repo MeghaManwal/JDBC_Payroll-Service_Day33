@@ -1,7 +1,2 @@
 "Id","Name","phoneNumber","address","department","gender","basicPay","deductions","taxablePay","tax","netPay","start"
-1,"Jack","Null","Null","HR","M",35000.0,0.0,0.0,0.0,0.0,"2020-03-21"
-2,"Terrisa","Null","Null","Sales","F",45000.0,0.0,0.0,0.0,0.0,"2020-02-22"
-3,"Nick","Null","Null","IT","M",50000.0,0.0,0.0,0.0,0.0,"2020-04-02"
-4,"Terrisa","Null","Null","Marketing","F",50000.0,0.0,0.0,0.0,0.0,"2020-06-21"
-5,"Mark","","","HR","M",50000.0,0.0,0.0,0.0,0.0,""
-6,"Bill","","","Marketing","M",60000.0,0.0,0.0,0.0,0.0,""
+1,"Mark","","","HR","M",50000.0,0.0,0.0,0.0,0.0,""

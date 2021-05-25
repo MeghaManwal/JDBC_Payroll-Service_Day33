@@ -70,4 +70,32 @@ public class EmployeePayrollRepo {
 		
 	}
 
+	public void cascadingdelete() throws SQLException {
+		
+		Connection connection = null;
+		PreparedStatement prepstatement = null;
+		
+		try {
+			DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver ());
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/payroll__service", "root", "");
+			
+			String query = "Delete from payroll where ID =2";
+			prepstatement = connection.prepareStatement(query);
+			
+			prepstatement.executeUpdate();
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+		 	if(connection != null) {
+		 		connection.close();
+			}
+			if(prepstatement != null) {
+				prepstatement.close();
+			}
+		 }
+		
+	}
+
 }
