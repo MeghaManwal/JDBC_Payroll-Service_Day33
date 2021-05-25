@@ -5,7 +5,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +18,7 @@ public class EmployeeRepo {
 		DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver ());
 		
 		//Step2: Establish a MySql Connection
-		 connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/payroll__service", "root", "Varsha@!4455");
+		 connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/payroll__service", "root", "");
 		
 		//Step3: Create Statement
 		 String query = "insert into payroll(Name,department,gender, basicpay) value('"+info.getName()+"','"+info.getDepartment()+"','"+info.getGender()+"','"+info.getBasicPay()+"')";
@@ -54,7 +53,7 @@ public class EmployeeRepo {
 		 DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver ());
 		
 		//Step2: Establish a MySql Connection
-		 connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/payroll__service", "root", "Varsha@!4455");
+		 connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/payroll__service", "root", "");
 		
 		//Step3: Create Statement
 		  String query =" select * from payroll where Name=?";
@@ -108,7 +107,7 @@ public class EmployeeRepo {
 		 DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver ());
 		
 		//Step2: Establish a MySql Connection
-		 connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/payroll__service", "root", "Varsha@!4455");
+		 connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/payroll__service", "root", "");
 		
 		//Step3: Create Statement
 		 String query ="Update payroll set basicPay=? where Id=?";
@@ -142,7 +141,7 @@ public class EmployeeRepo {
 		try {
 			DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver ());
 			
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/payroll__service", "root", "Varsha@!4455");
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/payroll__service", "root", "");
 			
 			String query ="Select * from payroll where Start between Cast('2020-03-10' as date) and date(now()); ";
 			prepstatement = connection.prepareStatement(query);
@@ -192,7 +191,7 @@ public class EmployeeRepo {
 		try {
 			DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver ());
 			
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/payroll__service", "root", "Varsha@!4455");
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/payroll__service", "root", "");
 			
 			//To Retrieve sum of BasicPay for Male employees
 			String query1="Select Sum(basicPay) From payroll where Gender ='M' group by Gender";
