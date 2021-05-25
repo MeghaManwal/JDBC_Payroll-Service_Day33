@@ -13,7 +13,7 @@ public class EmployeeRepo {
 	
 	public void insertRecord(Information info) throws ClassNotFoundException, SQLException {
 		Connection connection = null;
-		Statement statement = null;
+		PreparedStatement prepstatement = null;
 		try {
 		//Step1: Load & Register Driver Class
 		DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver ());
@@ -22,11 +22,12 @@ public class EmployeeRepo {
 		 connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/payroll__service", "root", "Varsha@!4455");
 		
 		//Step3: Create Statement
-		 statement = connection.createStatement();
+		 String query = "insert into payroll(Name,department,gender, basicpay) value('"+info.getName()+"','"+info.getDepartment()+"','"+info.getGender()+"','"+info.getBasicPay()+"')";
+		 prepstatement = connection.prepareStatement(query);
 		
 		//Step4: Execute Query
-		 String query = "insert into payroll(Name,department,gender, basicpay) value('"+info.getName()+"','"+info.getDepartment()+"','"+info.getGender()+"','"+info.getBasicPay()+"')";
-		 int result = statement.executeUpdate(query);
+		 
+		 int result = prepstatement.executeUpdate();
 		 System.out.print(result);
 		
 		 }catch (SQLException e) {
@@ -35,10 +36,10 @@ public class EmployeeRepo {
 			e.printStackTrace();
 		 }finally {
 		 	if(connection != null) {
-			statement.close();
+		 		connection.close();
 			}
-			if(statement != null) {
-			connection.close();
+			if(prepstatement != null) {
+				prepstatement.close();
 			}
 		 }	
 	}
@@ -183,6 +184,7 @@ public class EmployeeRepo {
 			return infos;
 	}
 
+	@SuppressWarnings("resource")
 	public void applydatabaseFunctions() throws SQLException {
 	
 		Connection connection = null;
@@ -294,7 +296,6 @@ public class EmployeeRepo {
 		         }
 	         }
 	}
-
 	
-
+	
 }
