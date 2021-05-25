@@ -12,6 +12,7 @@ public class Employee_payroll {
 	 System.out.println("Enter 1 for Adding Data\n Enter 2 for Deleting Data\n");
 	 int option = s.nextInt();
 	 if(option == 1) {
+		 
 	 repo.addEmployeeDetail("Mark","HR","M",50000);
 	 repo.addSalaryDetail(10000,40000,4000,36000);
 	 repo.addEmployeeDetail("Bill","Marketing","M",60000);

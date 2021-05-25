@@ -15,7 +15,7 @@ public class EmployeePayrollRepo {
 			DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver ());
 			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/payroll__service", "root", "");
 			
-			
+			connection.setAutoCommit(false);
 			String query = "insert into payroll(Name,department,gender, basicpay) value(?,?,?,?)";
 			prepstatement = connection.prepareStatement(query);
 			prepstatement.setString(1, Name);
@@ -24,8 +24,16 @@ public class EmployeePayrollRepo {
 			prepstatement.setInt(4, basicPay);
 			
 			prepstatement.executeUpdate();
+			
+			connection.commit();
 		}catch (SQLException e) {
 			e.printStackTrace();
+			try {
+				connection.rollback();
+				System.out.println("Rolled back Successfully");
+			}catch (Exception e1) {
+				e1.printStackTrace();
+			}
 		 }catch (Exception e) {
 			e.printStackTrace();
 		 }finally {
@@ -46,7 +54,7 @@ public class EmployeePayrollRepo {
 			DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver ());
 			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/payroll__service", "root", "");
 			
-			
+			connection.setAutoCommit(false);
 			String query = "insert into payroll_details(Deduction,IncomeTax,TaxablePay, NetSalary) value(?,?,?,?)";
 			prepstatement = connection.prepareStatement(query);
 			prepstatement.setInt(1, Deduction);
@@ -55,8 +63,15 @@ public class EmployeePayrollRepo {
 			prepstatement.setInt(4, NetSalary);
 			
 			prepstatement.executeUpdate();
+			connection.commit();
 		}catch (SQLException e) {
 			e.printStackTrace();
+			try {
+				connection.rollback();
+				System.out.println("Rolled back Successfully");
+			}catch (Exception e1) {
+				e1.printStackTrace();
+			}
 		 }catch (Exception e) {
 			e.printStackTrace();
 		 }finally {
